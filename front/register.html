@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+    <div id="main">
+        <h3 id="message"></h3>
+        <form action="" id="frm">
+            <input type="text" placeholder="name" id="id">
+            <input type="text" name="" id="email" placeholder="mail">
+            <input type="text" name="" id="pass" placeholder="password">
+            <input type="submit" value="submit" id="">
+        </form>
+
+        <script>
+            document.getElementById("frm").addEventListener('submit', (e) => {
+                e.preventDefault();
+                register()
+            })
+
+
+            function register()
+
+            {
+                const formm = document.getElementById("frm")
+                const msg = document.getElementById("message")
+
+
+
+
+                const data = {
+                    id: formm.elements['id'].value,
+                    pass: formm.elements['pass'].value,
+                    email: formm.elements['email'].value
+                }
+
+                console.log(data)
+                console.log(JSON.stringify(data))
+                fetch('http://127.0.0.1:3000/register', {
+                    "method": "POST",
+                    "body": JSON.stringify(data),
+                    credentials: "include",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(d => d.text()).then(s => {
+                    console.log(s)
+                    ele.innerText = s.toString()
+
+                })
+            }
+        </script>
+    </div>
+</body>
+
+</html>
